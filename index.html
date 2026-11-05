@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nikhil &amp; Dhanashri | Wedding Invitation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+
+
+<!-- fixed background video, sits behind everything -->
+<div class="bg-video-wrap" aria-hidden="true">
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="video/royal-bg.mp4" type="video/mp4" />
+  </video>
+  <div class="bg-video-overlay"></div>
+</div>
+
+<!-- decorative falling-petal layer, runs for the whole session -->
+<div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
+
+<!-- floating music control, available on every screen -->
+<button class="music-toggle" id="musicToggle" aria-pressed="false" aria-label="Play background music">
+  <span class="music-toggle-icon" aria-hidden="true">♪</span>
+</button>
+
+<!-- ================= ENVELOPE COVER ================= -->
+<div class="envelope-screen" id="envelopeScreen">
+  <div class="envelope-wrap">
+    <div class="envelope-3d" id="envelope3d">
+      <img class="envelope-image" src="images/envelope.jpg" alt="Wedding invitation envelope" />
+
+      <p class="envelope-title-text">You're Invited</p>
+
+      <button class="wax-seal" id="waxSeal" aria-label="Open your royal invitation"></button>
+
+      <p class="envelope-tap-text">Tap to open your invitation</p>
+    </div>
+  </div>
+</div>
+
+<audio id="bgMusic" src="audio/wedding-music.mp3" loop preload="none"></audio>
+
+<!-- ================= MAIN INVITATION ================= -->
+<main class="invitation" id="invitation" aria-hidden="true">
+
+  <!-- Section 1 : Devotional Header -->
+  <section class="section devotional fade-section" id="devotional">
+    <div class="ornament ornament-top" aria-hidden="true">❦</div>
+    <p class="devotional-invocation">|| श्री गणेशाय नमः ||</p>
+    <p class="devotional-shloka">
+      वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br />
+      निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+    </p>
+    <p class="devotional-translation">
+      O Lord Ganesha, of the curved trunk and mighty form, whose brilliance equals a
+      million suns — please make all my endeavours free of obstacles, always.
+    </p>
+    <div class="ornament ornament-bottom" aria-hidden="true">❦</div>
+  </section>
+
+  <!-- Section 2 : Hero -->
+  <section class="section hero fade-section" id="hero">
+    <div class="hero-frame glass-panel glass-panel--light">
+      <p class="hero-kicker">The wedding celebration of</p>
+      <h1 class="hero-title">
+        <span class="hero-name">Nikhil</span>
+        <span class="hero-and">weds</span>
+        <span class="hero-name">Dhanashri</span>
+      </h1>
+      <div class="hero-divider" aria-hidden="true">
+        <span></span><span class="hero-divider-motif">卐</span><span></span>
+      </div>
+      <p class="hero-parents">
+        Son of<br />
+        <strong>Smt.Deepika &amp; Late Shri. Diliprao Nachankar</strong>
+      </p>
+      <p class="hero-parents">
+        Daughter of<br />
+        <strong>Mrs. Alka &amp; Mr. Ganeshrao Dahikar</strong>
+      </p>
+      <p class="hero-blessing">
+        With hearts full of gratitude and joy, the Dahikar and Nachankar families
+        joyfully invite you to witness and bless the sacred union of their beloved
+        children, as two souls and two families become one.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3 : Scratch Card (now above the countdown) -->
+  <section class="section scratch-section fade-section" id="scratch-section">
+    <p class="section-subtitle">Scratch the golden seal below to reveal our Shubh Muhurt</p>
+    <div class="scratch-card-frame glass-panel glass-panel--light">
+      <div class="scratch-card" id="scratchCard">
+        <p class="scratch-reveal-text">
+          26 November 2026<br />at 10:21 AM<br /><span></span>
+        </p>
+        <canvas id="scratchCanvas"></canvas>
+      </div>
+    </div>
+    <p class="scratch-hint" id="scratchHint">Use your finger or mouse to scratch ✨</p>
+  </section>
+
+  <!-- Section 4 : Countdown -->
+  <section class="section countdown-section fade-section" id="countdown-section">
+    <h2 class="section-title">Counting Down To Our Forever</h2>
+    <p class="section-subtitle">26th November 2026</p>
+    <div class="countdown" id="countdown">
+      <div class="countdown-unit glass-panel glass-panel--dark">
+        <span class="countdown-value" id="cd-days">00</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <div class="countdown-unit glass-panel glass-panel--dark">
+        <span class="countdown-value" id="cd-hours">00</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <div class="countdown-unit glass-panel glass-panel--dark">
+        <span class="countdown-value" id="cd-minutes">00</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+      <div class="countdown-unit glass-panel glass-panel--dark">
+        <span class="countdown-value" id="cd-seconds">00</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5 : Events Timeline -->
+  <section class="section events-section fade-section" id="events-section">
+    <h2 class="section-title">Wedding Events Timeline</h2>
+    <p class="section-subtitle">Five days of colour, music and tradition</p>
+
+    <div class="events-grid">
+      <article class="event-card glass-panel glass-panel--dark">
+        <div class="event-image-frame">
+          <img src="images/mehndi.jpg" alt="Mehndi ceremony" loading="lazy" />
+        </div>
+        <span class="event-number">01</span>
+        <h3 class="event-name">Mehndi</h3>
+        <p class="event-detail">24th November 2026</p>
+        <p class="event-detail">06:00 PM</p>
+        <p class="event-detail">Nachankar's Residence</p>
+      </article>
+
+      <article class="event-card glass-panel glass-panel--dark">
+        <div class="event-image-frame">
+          <img src="images/haldi.jpg" alt="Haldi ceremony" loading="lazy" />
+        </div>
+        <span class="event-number">02</span>
+        <h3 class="event-name">Haldi</h3>
+        <p class="event-detail">25th November 2026</p>
+        <p class="event-detail">11:00 AM</p>
+        <p class="event-detail">Nachankar's Residence</p>
+      </article>
+
+      <article class="event-card glass-panel glass-panel--dark">
+        <div class="event-image-frame">
+          <img src="images/sangeet.jpg" alt="Sangeet night" loading="lazy" />
+        </div>
+        <span class="event-number">03</span>
+        <h3 class="event-name">Sangeet</h3>
+        <p class="event-detail">25th November 2026</p>
+        <p class="event-detail">07:00 PM</p>
+        <p class="event-detail">Wedding Hall</p>
+      </article>
+
+      <article class="event-card glass-panel glass-panel--dark">
+        <div class="event-image-frame">
+          <img src="images/wedding.jpg" alt="Wedding ceremony" loading="lazy" />
+        </div>
+        <span class="event-number">04</span>
+        <h3 class="event-name">Wedding</h3>
+        <p class="event-detail">26th November 2026</p>
+        <p class="event-detail">10:21 AM</p>
+        <p class="event-detail">Wedding Hall</p>
+      </article>
+
+      <article class="event-card glass-panel glass-panel--dark">
+        <div class="event-image-frame">
+          <img src="images/reception.jpg" alt="Reception" loading="lazy" />
+        </div>
+        <span class="event-number">05</span>
+        <h3 class="event-name">Reception</h3>
+        <p class="event-detail">27th November 2026</p>
+        <p class="event-detail">7:00 PM onwards</p>
+        <p class="event-detail">Reception Lawn</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Section 6 : Venue Map -->
+  <section class="section venue-section fade-section" id="venue-section">
+    <h2 class="section-title">Wedding Venue</h2>
+    <p class="section-subtitle">Kanchanmala Celebration</p>
+    <div class="map-frame glass-panel glass-panel--light">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.1276434564293!2d77.5073571!3d21.266414400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd6f3e4274e4351%3A0x9057a25d85e235f1!2sKanchanmala%20Celebration!5e0!3m2!1sen!2sin!4v1784361226568!5m2!1sen!2sin"
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </div>
+  </section>
+
+  <section class="section venue-section fade-section" id="venue-section">
+    <h2 class="section-title">Reception Venue</h2>
+    <p class="section-subtitle">Mahendra Lawn</p>
+    <div class="map-frame glass-panel glass-panel--light">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3727.1985544300887!2d77.74770207471131!3d20.90432989204141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd6a4cc2538de71%3A0x6bd00a431370078c!2sMahendra%20Lawn!5e0!3m2!1sen!2sin!4v1793900011489!5m2!1sen!2sin" 
+        width="600" 
+        height="450" 
+        style="border: 0" 
+        allowfullscreen="" 
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </section>
+
+  <!-- Section 8 : Thank You -->
+  <section class="section thankyou-section fade-section" id="thankyou-section">
+    <div class="thankyou-frame glass-panel glass-panel--dark">
+      <h2 class="thankyou-title">Thank You</h2>
+      <p class="thankyou-text">
+        For being a part of our journey, for your blessings, and for the love you've
+        always shown our families — we cannot wait to celebrate this beautiful new
+        beginning with you.
+      </p>
+      <p class="thankyou-signature">With love,<br />Nikhil &amp; Dhanashri</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Website crafted with love by <span>Madhura Lokhande</span></p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
